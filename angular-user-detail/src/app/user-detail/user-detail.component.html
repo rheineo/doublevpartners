@@ -1,0 +1,102 @@
+<ng-container *ngIf="state$ | async as state; else loading">
+  <!-- Loading State -->
+  <div *ngIf="state.loading" class="loading-container">
+    <div class="spinner"></div>
+    <p>Cargando detalles del usuario...</p>
+  </div>
+
+  <!-- Error State -->
+  <div *ngIf="state.error" class="error-container">
+    <div class="error-icon">⚠️</div>
+    <p class="error-message">{{ state.error }}</p>
+  </div>
+
+  <!-- No User State -->
+  <div *ngIf="!state.user && !state.loading && !state.error" class="empty-container">
+    <p>No se ha seleccionado ningún usuario</p>
+  </div>
+
+  <!-- User Details -->
+  <div *ngIf="state.user && !state.loading" class="user-detail">
+    <div class="user-header">
+      <img
+        [src]="state.user.avatar_url"
+        [alt]="state.user.login + ' avatar'"
+        class="avatar"
+      />
+      <div class="user-info">
+        <h2 class="name">{{ state.user.name || state.user.login }}</h2>
+        <p class="username">{{'@'}}{{ state.user.login }}</p>
+        <p *ngIf="state.user.bio" class="bio">{{ state.user.bio }}</p>
+      </div>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-item">
+        <span class="stat-value">{{ state.user.followers | followers }}</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value">{{ state.user.following }}</span>
+        <span class="stat-label">Siguiendo</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value">{{ state.user.public_repos }}</span>
+        <span class="stat-label">Repositorios</span>
+      </div>
+    </div>
+
+    <div class="details-list">
+      <div *ngIf="state.user.company" class="detail-item">
+        <span class="detail-icon">🏢</span>
+        <span class="detail-text">{{ state.user.company }}</span>
+      </div>
+      <div *ngIf="state.user.location" class="detail-item">
+        <span class="detail-icon">📍</span>
+        <span class="detail-text">{{ state.user.location }}</span>
+      </div>
+      <div *ngIf="state.user.blog" class="detail-item">
+        <span class="detail-icon">🔗</span>
+        <a [href]="state.user.blog" target="_blank" rel="noopener" class="detail-link">
+          {{ state.user.blog }}
+        </a>
+      </div>
+      <div *ngIf="state.user.twitter_username" class="detail-item">
+        <span class="detail-icon">🐦</span>
+        <a
+          [href]="'https://twitter.com/' + state.user.twitter_username"
+          target="_blank"
+          rel="noopener"
+          class="detail-link"
+        >
+          {{'@'}}{{ state.user.twitter_username }}
+        </a>
+      </div>
+      <div *ngIf="state.user.email" class="detail-item">
+        <span class="detail-icon">✉️</span>
+        <a [href]="'mailto:' + state.user.email" class="detail-link">
+          {{ state.user.email }}
+        </a>
+      </div>
+      <div class="detail-item">
+        <span class="detail-icon">📅</span>
+        <span class="detail-text">Se unió el {{ formatDate(state.user.created_at) }}</span>
+      </div>
+    </div>
+
+    <a
+      [href]="state.user.html_url"
+      target="_blank"
+      rel="noopener"
+      class="github-link"
+    >
+      Ver en GitHub
+    </a>
+  </div>
+</ng-container>
+
+<ng-template #loading>
+  <div class="loading-container">
+    <div class="spinner"></div>
+    <p>Cargando...</p>
+  </div>
+</ng-template>
