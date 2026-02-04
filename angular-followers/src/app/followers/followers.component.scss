@@ -1,0 +1,140 @@
+:host {
+  display: block;
+  color: var(--github-text, #c9d1d9);
+}
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  gap: 1rem;
+
+  .spinner {
+    width: 32px;
+    height: 32px;
+    border: 3px solid var(--github-border, #30363d);
+    border-top-color: var(--github-link, #58a6ff);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+
+  p {
+    color: var(--github-text, #c9d1d9);
+    font-size: 0.875rem;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.error-container {
+  text-align: center;
+  padding: 1.5rem;
+  background-color: rgba(248, 81, 73, 0.1);
+  border: 1px solid rgba(248, 81, 73, 0.4);
+  border-radius: 6px;
+
+  .error-icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .error-message {
+    color: #f85149;
+    font-size: 0.875rem;
+  }
+}
+
+.empty-container {
+  text-align: center;
+  padding: 2rem;
+
+  .empty-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    opacity: 0.5;
+  }
+
+  .empty-message {
+    color: #8b949e;
+    font-size: 0.875rem;
+  }
+}
+
+.followers-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: var(--github-dark, #0d1117);
+    border-radius: 3px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--github-border, #30363d);
+    border-radius: 3px;
+
+    &:hover {
+      background: #484f58;
+    }
+  }
+}
+
+.follower-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem;
+  background-color: var(--github-dark, #0d1117);
+  border-radius: 6px;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: var(--github-hover, #21262d);
+  }
+
+  .follower-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--github-border, #30363d);
+  }
+
+  .follower-info {
+    flex: 1;
+    min-width: 0;
+
+    .follower-name {
+      display: block;
+      color: var(--github-link, #58a6ff);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    .follower-type {
+      font-size: 0.75rem;
+      color: #8b949e;
+    }
+  }
+}
