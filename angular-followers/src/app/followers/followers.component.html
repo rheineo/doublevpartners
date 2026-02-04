@@ -1,0 +1,48 @@
+<ng-container *ngIf="state$ | async as state; else loading">
+  <!-- Loading State -->
+  <div *ngIf="state.loading" class="loading-container">
+    <div class="spinner"></div>
+    <p>Cargando seguidores...</p>
+  </div>
+
+  <!-- Error State -->
+  <div *ngIf="state.error" class="error-container">
+    <div class="error-icon">⚠️</div>
+    <p class="error-message">{{ state.error }}</p>
+  </div>
+
+  <!-- Empty State -->
+  <div *ngIf="!state.loading && !state.error && state.followers.length === 0" class="empty-container">
+    <div class="empty-icon">👥</div>
+    <p class="empty-message">Sin seguidores</p>
+  </div>
+
+  <!-- Followers List -->
+  <div *ngIf="!state.loading && !state.error && state.followers.length > 0" class="followers-list">
+    <div *ngFor="let follower of state.followers" class="follower-item">
+      <img
+        [src]="follower.avatar_url"
+        [alt]="follower.login + ' avatar'"
+        class="follower-avatar"
+      />
+      <div class="follower-info">
+        <a
+          [href]="follower.html_url"
+          target="_blank"
+          rel="noopener"
+          class="follower-name"
+        >
+          {{ follower.login }}
+        </a>
+        <span class="follower-type">{{ follower.type }}</span>
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+<ng-template #loading>
+  <div class="loading-container">
+    <div class="spinner"></div>
+    <p>Cargando...</p>
+  </div>
+</ng-template>
