@@ -44,7 +44,11 @@ export default function RootLayout({
             <div className="max-w-7xl mx-auto px-4 text-center text-sm text-gray-500">
               <p>
                 Construido con Next.js + Angular usando Module Federation |
-                Prueba Técnica DoubleV Partners
+                Prueba Técnica DoubleV Partners |
+                Desarrollado por: Ing. José Reinaldo García | 
+                Contacto: rheineo@gmail.com | 
+                Fecha: 04/02/2026 | 
+                Versión: 1.0.0
               </p>
             </div>
           </footer>
