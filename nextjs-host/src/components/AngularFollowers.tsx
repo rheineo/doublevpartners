@@ -10,6 +10,7 @@ interface AngularFollowersProps {
 export default function AngularFollowers({ username }: AngularFollowersProps) {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
+  const followersUrl = process.env.NEXT_PUBLIC_ANGULAR_FOLLOWERS_URL || 'https://angular-followers.vercel.app';
 
   const handleLoad = () => {
     setIsLoading(false);
@@ -56,7 +57,7 @@ export default function AngularFollowers({ username }: AngularFollowersProps) {
         </div>
       )}
       <iframe
-        src={`http://localhost:4202/?username=${username}`}
+        src={`${followersUrl}/?username=${username}`}
         className="w-full border-0 bg-transparent"
         style={{ 
           minHeight: '300px',

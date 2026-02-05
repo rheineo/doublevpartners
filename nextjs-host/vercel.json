@@ -1,0 +1,28 @@
+{
+  "framework": "nextjs",
+  "buildCommand": "npm run build",
+  "outputDirectory": ".next",
+  "installCommand": "npm install",
+  "env": {"NEXT_PUBLIC_ANGULAR_USER_DETAIL_URL": "https://angular-user-detail.vercel.app", "NEXT_PUBLIC_ANGULAR_FOLLOWERS_URL": "https://angular-followers.vercel.app"}, "functions": {
+    "src/app/actions/github.ts": {
+      "maxDuration": 10
+    }
+  },
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "s-maxage=60, stale-while-revalidate"
+        }
+      ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/((?!api|_next/static|_next/image|favicon.ico|user).*)",
+      "destination": "/index.html"
+    }
+  ]
+}
