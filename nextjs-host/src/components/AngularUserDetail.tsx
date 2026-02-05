@@ -10,6 +10,7 @@ interface AngularUserDetailProps {
 export default function AngularUserDetail({ username }: AngularUserDetailProps) {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
+  const userDetailUrl = process.env.NEXT_PUBLIC_ANGULAR_USER_DETAIL_URL || 'https://angular-user-detail.vercel.app';
 
   const handleLoad = () => {
     setIsLoading(false);
@@ -56,7 +57,7 @@ export default function AngularUserDetail({ username }: AngularUserDetailProps) 
         </div>
       )}
       <iframe
-        src={`http://localhost:4201/?username=${username}`}
+        src={`${userDetailUrl}/?username=${username}`}
         className="w-full border-0 bg-transparent"
         style={{ 
           minHeight: '400px',

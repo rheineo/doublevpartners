@@ -1,5 +1,3 @@
-'use client';
-
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
@@ -30,9 +28,8 @@ const AngularFollowers = dynamic(
   }
 );
 
-export default function UserDetailPage() {
-  const params = useParams();
-  const username = params.username as string;
+export default function UserDetailPage({ params }: { params: { username: string } }) {
+  const username = params.username;
 
   return (
     <div>

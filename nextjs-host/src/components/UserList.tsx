@@ -6,7 +6,7 @@ import LoadingSpinner from './LoadingSpinner';
 import Pagination from './Pagination';
 
 export default function UserList() {
-  const { users, totalCount, isLoading, error, query } = useUserStore();
+  const { users, totalCount, currentPage, isLoading, error, query } = useUserStore();
 
   if (isLoading) {
     return (
@@ -107,7 +107,11 @@ export default function UserList() {
           <UserCard key={user.id} {...user} />
         ))}
       </div>
-      <Pagination />
+      <Pagination 
+        totalCount={totalCount} 
+        currentPage={currentPage} 
+        perPage={12} 
+      />
     </div>
   );
 }
