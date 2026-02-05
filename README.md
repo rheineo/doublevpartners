@@ -2,6 +2,12 @@
 
 Aplicación web federada usando **Module Federation** que integra **Next.js** y **Angular** para buscar usuarios de GitHub y visualizar sus detalles.
 
+## 🚀 Demo en Vivo
+
+**[🔗 Ver Demostración en Vercel](https://github-user-lovat.vercel.app/)**
+
+Explora la aplicación en producción con todas las funcionalidades integradas.
+
 ## 🏗️ Arquitectura
 
 ```
@@ -180,6 +186,14 @@ Una vez que todos los servicios estén corriendo:
 | Custom Pipes | - | Transformación de datos en templates |
 | Module Federation | 17.0.0 | Arquitectura de microfrontends |
 
+### Despliegue y Producción
+| Plataforma | Propósito |
+|-----------|-----------|
+| Vercel | Hosting principal para Next.js y Angular |
+| GitHub Actions | CI/CD para despliegue automático |
+| Environment Variables | Configuración de URLs de microfrontends |
+| Preview Deployments | Despliegues automáticos por Pull Request |
+
 ### Arquitectura y Comunicación
 | Tecnología | Propósito |
 |------------|-----------|
@@ -339,7 +353,7 @@ kill -9 <PID>
 
 ## 👤 Autor
 
-DoubleV Partners - Technical Test
+Ing. José Reinaldo García Becerra - DoubleV Partners - Technical Test
 
 ## 📄 Licencia
 
